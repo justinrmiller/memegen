@@ -3,4 +3,3 @@ MemeGen
 A service to generate meme photos.
 
 Usage: java -jar MemeGen.jar <ip address> <port> <env>
-This file was modified by IntelliJ IDEA 12.1.3 for binding GitHub repository
