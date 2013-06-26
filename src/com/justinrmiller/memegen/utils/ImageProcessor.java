@@ -14,7 +14,7 @@ public class ImageProcessor {
     private static final int TOP_MARGIN = -5;
     private static final int SIDE_MARGIN = 10;
 
-    public static BufferedImage overlay(BufferedImage image, String topCaption, String bottomCaption)
+    public static BufferedImage overlay(BufferedImage image, String topCaption, String bottomCaption, String face)
             throws IOException {
         Graphics graphics = image.getGraphics();
         Graphics2D g2d = (Graphics2D)graphics;
@@ -22,8 +22,8 @@ public class ImageProcessor {
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        drawStringCentered(graphics, topCaption, image, true);
-        drawStringCentered(graphics, bottomCaption, image, false);
+        drawStringCentered(graphics, topCaption, image, true, face);
+        drawStringCentered(graphics, bottomCaption, image, false, face);
         return image;
     }
 
@@ -31,7 +31,7 @@ public class ImageProcessor {
      * Draws the given string centered, as big as possible, on either the top or
      * bottom 20% of the image given.
      */
-    private static void drawStringCentered(Graphics g, String text, BufferedImage image, boolean top) {
+    private static void drawStringCentered(Graphics g, String text, BufferedImage image, boolean top, String face) {
         if (text == null) text = "";
 
         int height;
@@ -41,7 +41,7 @@ public class ImageProcessor {
         String formattedString;
 
         do {
-            g.setFont(new Font("Arial", Font.BOLD, fontSize));
+            g.setFont(new Font(face, Font.BOLD, fontSize));
 
             // first inject newlines into the text to wrap properly
             StringBuilder sb = new StringBuilder();

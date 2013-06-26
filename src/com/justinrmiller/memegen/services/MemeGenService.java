@@ -38,8 +38,9 @@ public class MemeGenService {
     public Response generate(
             @PathParam("meme") String memeID,
             @QueryParam("top") String top,
-            @QueryParam("bottom") String bottom) {
-        BufferedImage image = memeGenController.generate(memeID, top != null ? top : "", bottom != null ? bottom : "");
+            @QueryParam("bottom") String bottom,
+            @QueryParam("face") String face) {
+        BufferedImage image = memeGenController.generate(memeID, top != null ? top : "", bottom != null ? bottom : "", face);
 
         if (image != null) {
             return Response.ok(image).build();

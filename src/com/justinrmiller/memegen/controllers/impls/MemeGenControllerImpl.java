@@ -4,6 +4,7 @@ import com.google.common.base.Joiner;
 import com.justinrmiller.memegen.MemeGen;
 import com.justinrmiller.memegen.controllers.MemeGenController;
 import com.justinrmiller.memegen.utils.ImageProcessor;
+import org.h2.util.StringUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -23,13 +24,17 @@ public class MemeGenControllerImpl implements MemeGenController {
     }
 
     @Override
-    public BufferedImage generate(String memeID, String topText, String bottomText) {
+    public BufferedImage generate(String memeID, String topText, String bottomText, String face) {
         BufferedImage image = null;
 
         if (MemeGen.MEMES.containsKey(memeID)) {
             try {
+                if (StringUtils.isNullOrEmpty(face)) {
+                    face = "Arial";
+                }
+
                 BufferedImage original = ImageIO.read(new ByteArrayInputStream(MEMES.get(memeID)));
-                image = ImageProcessor.overlay(original, topText, bottomText);
+                image = ImageProcessor.overlay(original, topText, bottomText, face);
             } catch (IOException ioex) {
                 // add logging, optional
             }
