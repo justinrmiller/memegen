@@ -2,4 +2,4 @@ MemeGen
 
 A service to generate meme photos.
 
-Usage: java -jar MemeGen.jar <ip address> <port> <env>
+Usage: java -jar memegen-1.0-SNAPSHOT.jar "../memes"
