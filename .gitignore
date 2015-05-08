@@ -1,7 +1,6 @@
 .idea/
 bin/
-build/
-dist/
-lib/
 log/
+target/
 
+*.iml

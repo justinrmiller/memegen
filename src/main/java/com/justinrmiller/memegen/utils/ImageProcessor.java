@@ -1,8 +1,13 @@
 package com.justinrmiller.memegen.utils;
 
+import javax.imageio.ImageIO;
+
 import java.awt.*;
+
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /*
@@ -102,6 +107,16 @@ public class ImageProcessor {
             g.drawString(line, (image.getWidth() - (int) stringBounds.getWidth()) / 2, y);
 
             y += g.getFontMetrics().getHeight();
+        }
+    }
+
+    public static byte [] bufferedImageToByteArray(final BufferedImage bufferedImage) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(bufferedImage, "png", baos);
+            return baos.toByteArray();
+        } catch (IOException ioex) {
+            return null;
         }
     }
 }
